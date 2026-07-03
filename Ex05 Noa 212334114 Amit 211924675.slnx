@@ -1,5 +1,5 @@
 <Solution>
-  <Project Path="Logic/Logic.csproj" />
-  <Project Path="UI/UI.csproj" />
+  <Project Path="Logic/Logic.csproj" Id="4c095c42-61cb-46c4-9fb2-e249f8359f8c" />
+  <Project Path="UI/UI.csproj" Id="1d3816cf-ae4c-4a24-b6ca-4b5661922d95" />
   <Project Path="WindowsUI/GameUI.csproj" />
 </Solution>

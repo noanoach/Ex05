@@ -1,0 +1,120 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Dev\\Ex05\\B26 Ex05 NoaNoach 212334114 AmitFishel 211924675\\Ex05 Noa 212334114 Amit 211924675\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C25AF2FE-8BE1-B476-AA81-F42038274CCC}|WindowsUI\\GameUI.csproj|c:\\dev\\ex05\\b26 ex05 noanoach 212334114 amitfishel 211924675\\ex05 noa 212334114 amit 211924675\\windowsui\\gamesettingsform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C25AF2FE-8BE1-B476-AA81-F42038274CCC}|WindowsUI\\GameUI.csproj|solutionrelative:windowsui\\gamesettingsform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C25AF2FE-8BE1-B476-AA81-F42038274CCC}|WindowsUI\\GameUI.csproj|c:\\dev\\ex05\\b26 ex05 noanoach 212334114 amitfishel 211924675\\ex05 noa 212334114 amit 211924675\\windowsui\\gameform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C25AF2FE-8BE1-B476-AA81-F42038274CCC}|WindowsUI\\GameUI.csproj|solutionrelative:windowsui\\gameform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C25AF2FE-8BE1-B476-AA81-F42038274CCC}|WindowsUI\\GameUI.csproj|c:\\dev\\ex05\\b26 ex05 noanoach 212334114 amitfishel 211924675\\ex05 noa 212334114 amit 211924675\\windowsui\\gameform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C25AF2FE-8BE1-B476-AA81-F42038274CCC}|WindowsUI\\GameUI.csproj|solutionrelative:windowsui\\gameform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C25AF2FE-8BE1-B476-AA81-F42038274CCC}|WindowsUI\\GameUI.csproj|C:\\Dev\\Ex05\\B26 Ex05 NoaNoach 212334114 AmitFishel 211924675\\Ex05 Noa 212334114 Amit 211924675\\windowsui\\gamesettingsform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{C25AF2FE-8BE1-B476-AA81-F42038274CCC}|WindowsUI\\GameUI.csproj|solutionrelative:windowsui\\gamesettingsform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C25AF2FE-8BE1-B476-AA81-F42038274CCC}|WindowsUI\\GameUI.csproj|c:\\dev\\ex05\\b26 ex05 noanoach 212334114 amitfishel 211924675\\ex05 noa 212334114 amit 211924675\\windowsui\\gamesettingsform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C25AF2FE-8BE1-B476-AA81-F42038274CCC}|WindowsUI\\GameUI.csproj|solutionrelative:windowsui\\gamesettingsform.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C25AF2FE-8BE1-B476-AA81-F42038274CCC}|WindowsUI\\GameUI.csproj|c:\\dev\\ex05\\b26 ex05 noanoach 212334114 amitfishel 211924675\\ex05 noa 212334114 amit 211924675\\windowsui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C25AF2FE-8BE1-B476-AA81-F42038274CCC}|WindowsUI\\GameUI.csproj|solutionrelative:windowsui\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GameForm.Designer.cs",
+              "DocumentMoniker": "C:\\Dev\\Ex05\\B26 Ex05 NoaNoach 212334114 AmitFishel 211924675\\Ex05 Noa 212334114 Amit 211924675\\WindowsUI\\GameForm.Designer.cs",
+              "RelativeDocumentMoniker": "WindowsUI\\GameForm.Designer.cs",
+              "ToolTip": "C:\\Dev\\Ex05\\B26 Ex05 NoaNoach 212334114 AmitFishel 211924675\\Ex05 Noa 212334114 Amit 211924675\\WindowsUI\\GameForm.Designer.cs",
+              "RelativeToolTip": "WindowsUI\\GameForm.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-03T09:59:53.195Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GameSettingsForm.cs",
+              "DocumentMoniker": "C:\\Dev\\Ex05\\B26 Ex05 NoaNoach 212334114 AmitFishel 211924675\\Ex05 Noa 212334114 Amit 211924675\\WindowsUI\\GameSettingsForm.cs",
+              "RelativeDocumentMoniker": "WindowsUI\\GameSettingsForm.cs",
+              "ToolTip": "C:\\Dev\\Ex05\\B26 Ex05 NoaNoach 212334114 AmitFishel 211924675\\Ex05 Noa 212334114 Amit 211924675\\WindowsUI\\GameSettingsForm.cs",
+              "RelativeToolTip": "WindowsUI\\GameSettingsForm.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-03T09:54:03.252Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "GameSettingsForm.cs [Design]",
+              "DocumentMoniker": "C:\\Dev\\Ex05\\B26 Ex05 NoaNoach 212334114 AmitFishel 211924675\\Ex05 Noa 212334114 Amit 211924675\\WindowsUI\\GameSettingsForm.cs",
+              "RelativeDocumentMoniker": "WindowsUI\\GameSettingsForm.cs",
+              "ToolTip": "C:\\Dev\\Ex05\\B26 Ex05 NoaNoach 212334114 AmitFishel 211924675\\Ex05 Noa 212334114 Amit 211924675\\WindowsUI\\GameSettingsForm.cs [Design]",
+              "RelativeToolTip": "WindowsUI\\GameSettingsForm.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-03T09:18:21.289Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GameSettingsForm.Designer.cs",
+              "DocumentMoniker": "C:\\Dev\\Ex05\\B26 Ex05 NoaNoach 212334114 AmitFishel 211924675\\Ex05 Noa 212334114 Amit 211924675\\WindowsUI\\GameSettingsForm.Designer.cs",
+              "RelativeDocumentMoniker": "WindowsUI\\GameSettingsForm.Designer.cs",
+              "ToolTip": "C:\\Dev\\Ex05\\B26 Ex05 NoaNoach 212334114 AmitFishel 211924675\\Ex05 Noa 212334114 Amit 211924675\\WindowsUI\\GameSettingsForm.Designer.cs",
+              "RelativeToolTip": "WindowsUI\\GameSettingsForm.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJUAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-03T09:16:36.538Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Dev\\Ex05\\B26 Ex05 NoaNoach 212334114 AmitFishel 211924675\\Ex05 Noa 212334114 Amit 211924675\\WindowsUI\\Program.cs",
+              "RelativeDocumentMoniker": "WindowsUI\\Program.cs",
+              "ToolTip": "C:\\Dev\\Ex05\\B26 Ex05 NoaNoach 212334114 AmitFishel 211924675\\Ex05 Noa 212334114 Amit 211924675\\WindowsUI\\Program.cs",
+              "RelativeToolTip": "WindowsUI\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-03T09:09:24.128Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GameForm.cs",
+              "DocumentMoniker": "C:\\Dev\\Ex05\\B26 Ex05 NoaNoach 212334114 AmitFishel 211924675\\Ex05 Noa 212334114 Amit 211924675\\WindowsUI\\GameForm.cs",
+              "RelativeDocumentMoniker": "WindowsUI\\GameForm.cs",
+              "ToolTip": "C:\\Dev\\Ex05\\B26 Ex05 NoaNoach 212334114 AmitFishel 211924675\\Ex05 Noa 212334114 Amit 211924675\\WindowsUI\\GameForm.cs",
+              "RelativeToolTip": "WindowsUI\\GameForm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-03T09:07:54.796Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
