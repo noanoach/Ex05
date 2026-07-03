@@ -1,5 +1,5 @@
 ﻿
-namespace EX02.Logic
+namespace Logic
 {
     internal enum eCellValue
     {
