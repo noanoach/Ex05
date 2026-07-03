@@ -2,6 +2,7 @@
 using EX02.Logic;
 using EX02.Players;
 using Ex02.ConsoleUtils;
+using System.Threading;
 
 namespace EX02.UI
 {
@@ -246,6 +247,116 @@ namespace EX02.UI
             }
 
             return playAgain;
+        }
+
+        public void Run()
+        {
+            GameManager gameManager = new GameManager();
+            bool shouldPlayAgain = true;
+            int boardSize;
+            bool isAgainstComputer;
+
+            PrintWelcome();
+
+            boardSize = ReadBoardSize();
+            isAgainstComputer = ReadIsAgainstComputer();
+
+            gameManager.InitializeGame(boardSize, isAgainstComputer);
+
+            while (shouldPlayAgain)
+            {
+                playRound(gameManager);
+
+                PrintScore(gameManager.Player1, gameManager.Player2);
+
+                shouldPlayAgain = AskPlayAgain();
+
+                if (shouldPlayAgain)
+                {
+                    gameManager.StartNewRound();
+                }
+            }
+        }
+
+        private void playRound(GameManager i_GameManager)
+        {
+            bool isRoundOver = false;
+            eMoveResult moveResult;
+            Move move;
+
+            while (!isRoundOver)
+            {
+                PrintBoard(i_GameManager.Board);
+
+                moveResult = eMoveResult.InvalidFormat;
+
+                while (moveResult != eMoveResult.Success)
+                {
+                    if (i_GameManager.IsCurrentPlayerComputer())
+                    {
+                        Console.WriteLine("Computer is thinking...");
+                        Thread.Sleep(1000);
+
+                        move = i_GameManager.GetComputerMove();
+                        moveResult = i_GameManager.PlayTurn(move);
+                    }
+                    else
+                    {
+                        move = ReadMove(i_GameManager.CurrentPlayer);
+                        moveResult = move.Result;
+
+                        if (moveResult == eMoveResult.Success)
+                        {
+                            moveResult = i_GameManager.PlayTurn(move);
+                        }
+                    }
+
+                    switch (moveResult)
+                    {
+                        case eMoveResult.InvalidFormat:
+                            PrintInvalidInputMessage();
+                            break;
+
+                        case eMoveResult.OutOfRange:
+                            PrintCellOutOfRangeMessage();
+                            break;
+
+                        case eMoveResult.CellTaken:
+                            PrintCellTakenMessage();
+                            break;
+
+                        case eMoveResult.Quit:
+                            return;
+                    }
+                }
+
+                isRoundOver = i_GameManager.IsRoundOver();
+
+                if (!isRoundOver)
+                {
+                    i_GameManager.SwitchTurn();
+                }
+            }
+
+            PrintBoard(i_GameManager.Board);
+
+            handleRoundEnd(i_GameManager);
+        }
+
+        private void handleRoundEnd(GameManager i_GameManager)
+        {
+            Player winner;
+
+            if (i_GameManager.CurrentPlayerLost())
+            {
+                winner = i_GameManager.GetRoundWinner();
+                i_GameManager.AddPointToWinner();
+                PrintWinner(winner);
+            }
+            else
+            {
+                PrintTie();
+            }
         }
     }
 }

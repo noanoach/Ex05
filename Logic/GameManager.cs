@@ -1,7 +1,5 @@
 ﻿using EX02.Players;
-using EX02.UI;
-using System;
-using System.Threading;
+using Logic;
 
 namespace EX02.Logic
 {
@@ -11,48 +9,33 @@ namespace EX02.Logic
         private Player m_Player1;
         private Player m_Player2;
         private Player m_CurrentPlayer;
-        private ConsoleUI m_ConsoleUI;
 
-     
-        /// Runs the entire game flow.
-        public void Run()
+        public Board Board
         {
-            bool shouldPlayAgain = true;
-
-            InitializeGame();
-
-            while (shouldPlayAgain)
-            {
-                PlayRound();
-
-                m_ConsoleUI.PrintScore(m_Player1, m_Player2);
-
-                shouldPlayAgain = m_ConsoleUI.AskPlayAgain();
-
-                if (shouldPlayAgain)
-                {
-                    StartNewRound();
-                }
-            }
+            get { return m_Board; }
         }
 
-        /// Initializes players and board settings.
-        private void InitializeGame()
+        public Player Player1
         {
-            int boardSize;
-            bool isAgainstComputer;
+            get { return m_Player1; }
+        }
 
-            m_ConsoleUI = new ConsoleUI();
+        public Player Player2
+        {
+            get { return m_Player2; }
+        }
 
-            m_ConsoleUI.PrintWelcome();
+        public Player CurrentPlayer
+        {
+            get { return m_CurrentPlayer; }
+        }
 
-            boardSize = m_ConsoleUI.ReadBoardSize();
-
-            isAgainstComputer = m_ConsoleUI.ReadIsAgainstComputer();
-
+        /// Initializes the game logic with board size and game mode.
+        public void InitializeGame(int i_BoardSize, bool i_IsAgainstComputer)
+        {
             m_Player1 = new Player("Player 1", eCellValue.X);
 
-            if (isAgainstComputer)
+            if (i_IsAgainstComputer)
             {
                 m_Player2 = new ComputerPlayer("Player 2", eCellValue.O);
             }
@@ -61,87 +44,33 @@ namespace EX02.Logic
                 m_Player2 = new Player("Player 2", eCellValue.O);
             }
 
-            m_Board = new Board(boardSize);
-
+            m_Board = new Board(i_BoardSize);
             m_CurrentPlayer = m_Player1;
         }
 
-
-        /// Runs one round of the game.
-        private void PlayRound()
+        /// Places the current player's symbol on the board.
+        public eMoveResult PlayTurn(Move i_Move)
         {
-            bool isRoundOver = false;
-            eMoveResult moveResult;
-            Move move;
-
-            while (!isRoundOver)
-            {
-                m_ConsoleUI.PrintBoard(m_Board);
-
-                moveResult = eMoveResult.InvalidFormat;
-
-                while (moveResult != eMoveResult.Success)
-                {
-                    if (m_CurrentPlayer is ComputerPlayer)
-                    {
-                        Console.WriteLine("Computer is thinking...");
-                        Thread.Sleep(1000);
-
-                        move = ((ComputerPlayer)m_CurrentPlayer).ChooseMove(m_Board);
-                        moveResult = PlayTurn(move);
-                    }
-                    else
-                    {
-                        move = m_ConsoleUI.ReadMove(m_CurrentPlayer);
-                        moveResult = move.Result;
-
-                        if (moveResult == eMoveResult.Success)
-                        {
-                            moveResult = PlayTurn(move);
-                        }
-                    }
-
-                    switch (moveResult)
-                    {
-                        case eMoveResult.InvalidFormat:
-                            m_ConsoleUI.PrintInvalidInputMessage();
-                            break;
-
-                        case eMoveResult.OutOfRange:
-                            m_ConsoleUI.PrintCellOutOfRangeMessage();
-                            break;
-
-                        case eMoveResult.CellTaken:
-                            m_ConsoleUI.PrintCellTakenMessage();
-                            break;
-
-                        case eMoveResult.Quit:
-                            return;
-                    }
-                }
-
-                isRoundOver = IsRoundOver();
-
-                if (!isRoundOver)
-                {
-                    SwitchTurn();
-                }
-            }
-
-            m_ConsoleUI.PrintBoard(m_Board);
-
-            HandleRoundEnd();
+            return m_Board.PlaceSymbol(
+                i_Move.Row,
+                i_Move.Col,
+                m_CurrentPlayer.Symbol);
         }
 
-        /// Handles a single player turn.
-        private eMoveResult PlayTurn(Move i_Move)
+        /// Returns true if the current player is the computer.
+        public bool IsCurrentPlayerComputer()
         {
-            return m_Board.PlaceSymbol(i_Move.Row, i_Move.Col, m_CurrentPlayer.Symbol);
+            return m_CurrentPlayer is ComputerPlayer;
         }
 
+        /// Gets the computer player's next move.
+        public Move GetComputerMove()
+        {
+            return ((ComputerPlayer)m_CurrentPlayer).ChooseMove(m_Board);
+        }
 
         /// Switches the turn to the other player.
-        private void SwitchTurn()
+        public void SwitchTurn()
         {
             if (m_CurrentPlayer == m_Player1)
             {
@@ -154,35 +83,51 @@ namespace EX02.Logic
         }
 
         /// Checks if the current round ended.
-        private bool IsRoundOver()
+        public bool IsRoundOver()
         {
-            return m_Board.HasLosingSequence(m_CurrentPlayer.Symbol) || m_Board.IsFull();
+            return m_Board.HasLosingSequence(m_CurrentPlayer.Symbol)
+                   || m_Board.IsFull();
         }
 
-        /// Updates scores and handles end of round.
-        private void HandleRoundEnd()
+        /// Returns true if the current player created a losing sequence.
+        public bool CurrentPlayerLost()
         {
-            if (m_Board.HasLosingSequence(m_CurrentPlayer.Symbol))
+            return m_Board.HasLosingSequence(m_CurrentPlayer.Symbol);
+        }
+
+        /// Returns the winner of the round, or null if there is a tie.
+        public Player GetRoundWinner()
+        {
+            Player winner = null;
+
+            if (CurrentPlayerLost())
             {
                 if (m_CurrentPlayer == m_Player1)
                 {
-                    m_Player2.AddPoint();
-                    m_ConsoleUI.PrintWinner(m_Player2);
+                    winner = m_Player2;
                 }
                 else
                 {
-                    m_Player1.AddPoint();
-                    m_ConsoleUI.PrintWinner(m_Player1);
+                    winner = m_Player1;
                 }
             }
-            else
+
+            return winner;
+        }
+
+        /// Adds one point to the round winner.
+        public void AddPointToWinner()
+        {
+            Player winner = GetRoundWinner();
+
+            if (winner != null)
             {
-                m_ConsoleUI.PrintTie();
+                winner.AddPoint();
             }
         }
 
         /// Starts a new round with a cleared board.
-        private void StartNewRound()
+        public void StartNewRound()
         {
             m_Board.Clear();
             m_CurrentPlayer = m_Player1;

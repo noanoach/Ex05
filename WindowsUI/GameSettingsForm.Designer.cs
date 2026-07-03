@@ -1,6 +1,6 @@
 ﻿namespace WindowsUI
 {
-    partial class Form1
+    partial class GameSettingsForm
     {
         /// <summary>
         ///  Required designer variable.
