@@ -37,9 +37,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Board.cs" />
-    <Compile Include="eMoveResult.cs" />
+    <Compile Include="Players\ComputerPlayer.cs" />
+    <Compile Include="enums\eCellValue.cs" />
+    <Compile Include="enums\eGameStatus.cs" />
+    <Compile Include="enums\eMoveResult.cs" />
     <Compile Include="GameManager.cs" />
     <Compile Include="Move.cs" />
+    <Compile Include="Players\Player.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

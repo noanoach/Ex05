@@ -1,6 +1,5 @@
 <Solution>
   <Project Path="Logic/Logic.csproj" />
-  <Project Path="Players/Players.csproj" />
   <Project Path="UI/UI.csproj" />
   <Project Path="WindowsUI/GameUI.csproj" />
 </Solution>
