@@ -1,12 +1,7 @@
 ﻿
 namespace Logic
 {
-    internal enum eCellValue
-    {
-        Empty,
-        X,
-        O
-    }
+    
     internal class Board
     {
         private eCellValue[,] m_Cells;

@@ -1,7 +1,6 @@
 ﻿using System;
-using EX02.Logic;
 
-namespace EX02.Players
+namespace Logic
 {
     internal class ComputerPlayer : Player
     {
