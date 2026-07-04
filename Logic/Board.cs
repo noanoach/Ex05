@@ -1,7 +1,6 @@
 ﻿
 namespace Logic
 {
-    
     public class Board
     {
         private eCellValue[,] m_Cells;
@@ -31,7 +30,7 @@ namespace Logic
             return m_Cells[i_Row, i_Col] == eCellValue.Empty;
         }
 
-        private bool IsValidCell(int i_Row, int i_Col)
+        private bool isValidCell(int i_Row, int i_Col)
         {
             return i_Row >= 0 && i_Row < m_Size &&
                    i_Col >= 0 && i_Col < m_Size;
@@ -40,19 +39,24 @@ namespace Logic
         /// Places a symbol inside the requested cell.
         public eMoveResult PlaceSymbol(int i_Row, int i_Col, eCellValue i_Symbol)
         {
-            if (!IsValidCell(i_Row, i_Col))
+            eMoveResult moveResult = eMoveResult.Success;
+
+            if (!isValidCell(i_Row, i_Col))
             {
-                return eMoveResult.OutOfRange;
+                moveResult = eMoveResult.OutOfRange;
             }
 
-            if (!IsCellEmpty(i_Row, i_Col))
+            else if (!IsCellEmpty(i_Row, i_Col))
             {
-                return eMoveResult.CellTaken;
+                moveResult = eMoveResult.CellTaken;
             }
 
-            m_Cells[i_Row, i_Col] = i_Symbol;
+            else
+            {
+                m_Cells[i_Row, i_Col] = i_Symbol;
+            }
 
-            return eMoveResult.Success;
+            return moveResult;
         }
 
         /// Returns the symbol stored in a cell.
@@ -64,27 +68,29 @@ namespace Logic
         /// Checks whether the board is completely full.
         public bool IsFull()
         {
+            bool isFull = true;
+
             for (int row = 0; row < m_Size; row++)
             {
                 for (int col = 0; col < m_Size; col++)
                 {
                     if (m_Cells[row, col] == eCellValue.Empty)
                     {
-                        return false;
+                        isFull = false;
                     }
                 }
             }
 
-            return true;
+            return isFull;
         }
 
         /// Checks if the given symbol created a losing sequence.
         public bool HasLosingSequence(eCellValue i_Symbol)
         {
-            bool isLosingSequence = true;
+            bool isLosingSequence = false;
 
             // Check rows
-            for (int row = 0; row < m_Size; row++)
+            for (int row = 0; row < m_Size && !isLosingSequence; row++)
             {
                 isLosingSequence = true;
 
@@ -95,15 +101,10 @@ namespace Logic
                         isLosingSequence = false;
                     }
                 }
-
-                if (isLosingSequence)
-                {
-                    return true;
-                }
             }
 
             // Check columns
-            for (int col = 0; col < m_Size; col++)
+            for (int col = 0; col < m_Size && !isLosingSequence; col++)
             {
                 isLosingSequence = true;
 
@@ -114,37 +115,33 @@ namespace Logic
                         isLosingSequence = false;
                     }
                 }
-
-                if (isLosingSequence)
-                {
-                    return true;
-                }
             }
 
             // Check main diagonal
-            isLosingSequence = true;
-
-            for (int i = 0; i < m_Size; i++)
+            if (!isLosingSequence)
             {
-                if (m_Cells[i, i] != i_Symbol)
+                isLosingSequence = true;
+
+                for (int i = 0; i < m_Size; i++)
                 {
-                    isLosingSequence = false;
+                    if (m_Cells[i, i] != i_Symbol)
+                    {
+                        isLosingSequence = false;
+                    }
                 }
             }
 
-            if (isLosingSequence)
-            {
-                return true;
-            }
-
             // Check secondary diagonal
-            isLosingSequence = true;
-
-            for (int i = 0; i < m_Size; i++)
+            if (!isLosingSequence)
             {
-                if (m_Cells[i, m_Size - 1 - i] != i_Symbol)
+                isLosingSequence = true;
+
+                for (int i = 0; i < m_Size; i++)
                 {
-                    isLosingSequence = false;
+                    if (m_Cells[i, m_Size - 1 - i] != i_Symbol)
+                    {
+                        isLosingSequence = false;
+                    }
                 }
             }
 
@@ -163,6 +160,5 @@ namespace Logic
             }
         }
     }
-
 }
 
