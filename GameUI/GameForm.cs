@@ -7,9 +7,9 @@ namespace GameUI
     public partial class FormGameBoard : Form
     {
         private const int k_ButtonSize = 58;
-        private const int k_Margin = 14;
-        private const int k_Gap = 8;
-        private const int k_ScoreAreaHeight = 45;
+        private const int k_Margin = 10;
+        private const int k_Gap = 6;
+        private const int k_ScoreAreaHeight = 38;
 
         private readonly string r_Player1Name;
         private readonly string r_Player2Name;
@@ -65,7 +65,7 @@ namespace GameUI
                         k_Margin + row * (k_ButtonSize + k_Gap));
 
                     button.FlatStyle = FlatStyle.Standard;
-                    button.UseVisualStyleBackColor = true;
+                    button.UseVisualStyleBackColor = false;
                     button.BackColor = SystemColors.Control;
                     button.ForeColor = SystemColors.GrayText;
                     button.Font = new Font("Microsoft Sans Serif", 12);
