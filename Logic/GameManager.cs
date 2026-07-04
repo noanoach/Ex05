@@ -1,9 +1,8 @@
-﻿using EX02.Players;
-using Logic;
+﻿using Logic.Players;
 
-namespace EX02.Logic
+namespace Logic
 {
-    internal class GameManager
+    public class GameManager
     {
         private Board m_Board;
         private Player m_Player1;
@@ -31,17 +30,21 @@ namespace EX02.Logic
         }
 
         /// Initializes the game logic with board size and game mode.
-        public void InitializeGame(int i_BoardSize, bool i_IsAgainstComputer)
+        public void InitializeGame(
+            int i_BoardSize,
+            string i_Player1Name,
+            string i_Player2Name,
+            bool i_IsAgainstComputer)
         {
-            m_Player1 = new Player("Player 1", eCellValue.X);
+            m_Player1 = new Player(i_Player1Name, eCellValue.X);
 
             if (i_IsAgainstComputer)
             {
-                m_Player2 = new ComputerPlayer("Player 2", eCellValue.O);
+                m_Player2 = new ComputerPlayer(i_Player2Name, eCellValue.O);
             }
             else
             {
-                m_Player2 = new Player("Player 2", eCellValue.O);
+                m_Player2 = new Player(i_Player2Name, eCellValue.O);
             }
 
             m_Board = new Board(i_BoardSize);

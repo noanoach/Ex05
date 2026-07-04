@@ -2,7 +2,7 @@
 namespace Logic
 {
     
-    internal class Board
+    public class Board
     {
         private eCellValue[,] m_Cells;
         private int m_Size;

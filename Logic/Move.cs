@@ -1,7 +1,7 @@
 ﻿
 namespace Logic
 {
-    internal class Move
+    public class Move
     {
         private int m_Row;
         private int m_Col;

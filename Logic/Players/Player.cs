@@ -1,7 +1,7 @@
 ﻿
-namespace Logic
+namespace Logic.Players
 {
-    internal class Player
+    public class Player
     {
         private string m_Name;
         private eCellValue m_Symbol;

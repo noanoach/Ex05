@@ -1,8 +1,9 @@
 ﻿using System;
+using Logic;
 
-namespace Logic
+namespace Logic.Players
 {
-    internal class ComputerPlayer : Player
+    public class ComputerPlayer : Player
     {
         private Random m_Random;
 
