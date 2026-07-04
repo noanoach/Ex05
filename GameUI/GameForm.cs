@@ -140,6 +140,7 @@ namespace GameUI
                 else
                 {
                     m_GameManager.SwitchTurn();
+                    updateScoreLabel();
 
                     if (m_GameManager.IsCurrentPlayerComputer())
                     {
@@ -165,6 +166,11 @@ namespace GameUI
 
         private void playComputerTurn()
         {
+            if (!m_GameManager.IsCurrentPlayerComputer())
+            {
+                return;
+            }
+
             Move computerMove = m_GameManager.GetComputerMove();
 
             m_GameManager.PlayTurn(computerMove);
@@ -182,6 +188,7 @@ namespace GameUI
             else
             {
                 m_GameManager.SwitchTurn();
+                updateScoreLabel();
             }
         }
 
@@ -211,6 +218,7 @@ namespace GameUI
             if (result == DialogResult.Yes)
             {
                 m_GameManager.StartNewRound();
+                updateScoreLabel();
                 clearBoardButtons();
             }
             else
@@ -221,10 +229,24 @@ namespace GameUI
 
         private void updateScoreLabel()
         {
+            string player1Arrow = string.Empty;
+            string player2Arrow = string.Empty;
+
+            if (m_GameManager.CurrentPlayer == m_GameManager.Player1)
+            {
+                player1Arrow = "→ ";
+            }
+            else
+            {
+                player2Arrow = "→ ";
+            }
+
             m_LabelScore.Text = string.Format(
-                "{0}: {1}    {2}: {3}",
+                "{0}{1}: {2}    {3}{4}: {5}",
+                player1Arrow,
                 m_GameManager.Player1.Name,
                 m_GameManager.Player1.Score,
+                player2Arrow,
                 m_GameManager.Player2.Name,
                 m_GameManager.Player2.Score);
         }
