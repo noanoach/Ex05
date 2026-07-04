@@ -172,7 +172,6 @@
             Name = "FormGameSettings";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Game Settings";
-            Load += FormGameSettings_Load;
             ((System.ComponentModel.ISupportInitialize)numericUpDownRows).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDownCols).EndInit();
             ResumeLayout(false);
