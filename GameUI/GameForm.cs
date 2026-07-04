@@ -131,6 +131,7 @@ namespace GameUI
 
                 clickedButton.Text = m_GameManager.CurrentPlayer.Symbol.ToString();
                 clickedButton.Enabled = false;
+                ActiveControl = null;
 
                 if (m_GameManager.IsRoundOver())
                 {
@@ -172,6 +173,7 @@ namespace GameUI
 
             computerButton.Text = m_GameManager.CurrentPlayer.Symbol.ToString();
             computerButton.Enabled = false;
+            ActiveControl = null;
 
             if (m_GameManager.IsRoundOver())
             {
