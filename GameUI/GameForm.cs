@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using Logic;
+using Logic.Players;
 
 namespace GameUI
 {
@@ -18,7 +20,7 @@ namespace GameUI
 
         private Button[,] m_BoardButtons;
         private Label m_LabelScore;
-        private bool m_IsPlayer1Turn = true;
+        private GameManager m_GameManager;
 
         public FormGameBoard(
             string i_Player1Name,
@@ -32,6 +34,13 @@ namespace GameUI
             r_Player2Name = i_Player2Name;
             r_BoardSize = i_BoardSize;
             r_IsAgainstComputer = i_IsAgainstComputer;
+
+            m_GameManager = new GameManager();
+            m_GameManager.InitializeGame(
+                r_BoardSize,
+                r_Player1Name,
+                r_Player2Name,
+                r_IsAgainstComputer);
 
             initializeGameBoard();
         }
@@ -115,11 +124,81 @@ namespace GameUI
 
             if (clickedButton != null)
             {
-                clickedButton.Text = m_IsPlayer1Turn ? "X" : "O";
+                Point point = (Point)clickedButton.Tag;
+                Move move = new Move(point.X, point.Y);
+
+                m_GameManager.PlayTurn(move);
+
+                clickedButton.Text = m_GameManager.CurrentPlayer.Symbol.ToString();
                 clickedButton.Enabled = false;
 
-                m_IsPlayer1Turn = !m_IsPlayer1Turn;
+                if (m_GameManager.IsRoundOver())
+                {
+                    handleRoundOver();
+                }
+                else
+                {
+                    m_GameManager.SwitchTurn();
+                }
+            }
+
+        }
+
+        private void handleRoundOver()
+        {
+            Player winner = m_GameManager.GetRoundWinner();
+            string message;
+
+            m_GameManager.AddPointToWinner();
+            updateScoreLabel();
+
+            if (winner == null)
+            {
+                message = "Tie!";
+            }
+            else
+            {
+                message = string.Format("The winner is {0}!", winner.Name);
+            }
+
+            DialogResult result = MessageBox.Show(
+                message + Environment.NewLine + "Would you like to play another round?",
+                "A Round Ended",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                m_GameManager.StartNewRound();
+                clearBoardButtons();
+            }
+            else
+            {
+                this.Close();
+            }
+        }
+
+        private void updateScoreLabel()
+        {
+            m_LabelScore.Text = string.Format(
+                "{0}: {1}    {2}: {3}",
+                m_GameManager.Player1.Name,
+                m_GameManager.Player1.Score,
+                m_GameManager.Player2.Name,
+                m_GameManager.Player2.Score);
+        }
+
+        private void clearBoardButtons()
+        {
+            for (int row = 0; row < r_BoardSize; row++)
+            {
+                for (int col = 0; col < r_BoardSize; col++)
+                {
+                    m_BoardButtons[row, col].Text = string.Empty;
+                    m_BoardButtons[row, col].Enabled = true;
+                }
             }
         }
     }
+    
 }
