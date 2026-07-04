@@ -139,9 +139,48 @@ namespace GameUI
                 else
                 {
                     m_GameManager.SwitchTurn();
+
+                    if (m_GameManager.IsCurrentPlayerComputer())
+                    {
+                        System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+
+                        timer.Interval = 500; 
+
+                        timer.Tick += (sender, e) =>
+                        {
+                            timer.Stop();
+                            timer.Dispose();
+                            playComputerTurn();
+                        };
+
+                        timer.Start();
+                    }
+
                 }
+
             }
 
+        }
+
+        private void playComputerTurn()
+        {
+            Move computerMove = m_GameManager.GetComputerMove();
+
+            m_GameManager.PlayTurn(computerMove);
+
+            Button computerButton = m_BoardButtons[computerMove.Row, computerMove.Col];
+
+            computerButton.Text = m_GameManager.CurrentPlayer.Symbol.ToString();
+            computerButton.Enabled = false;
+
+            if (m_GameManager.IsRoundOver())
+            {
+                handleRoundOver();
+            }
+            else
+            {
+                m_GameManager.SwitchTurn();
+            }
         }
 
         private void handleRoundOver()
