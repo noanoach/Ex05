@@ -108,19 +108,9 @@ namespace GameUI
             return playerName;
         }
 
-        private void FormGameSettings_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void label1_Click(object sender, EventArgs e)
         {
             Text = "Players:";
-        }
-
-        private void buttonPlay_Click_1(object sender, EventArgs e)
-        {
-
         }
     }
 }

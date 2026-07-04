@@ -166,29 +166,27 @@ namespace GameUI
 
         private void playComputerTurn()
         {
-            if (!m_GameManager.IsCurrentPlayerComputer())
+            if (m_GameManager.IsCurrentPlayerComputer())
             {
-                return;
-            }
+                Move computerMove = m_GameManager.GetComputerMove();
 
-            Move computerMove = m_GameManager.GetComputerMove();
+                m_GameManager.PlayTurn(computerMove);
 
-            m_GameManager.PlayTurn(computerMove);
+                Button computerButton = m_BoardButtons[computerMove.Row, computerMove.Col];
 
-            Button computerButton = m_BoardButtons[computerMove.Row, computerMove.Col];
+                computerButton.Text = m_GameManager.CurrentPlayer.Symbol.ToString();
+                computerButton.Enabled = false;
+                ActiveControl = null;
 
-            computerButton.Text = m_GameManager.CurrentPlayer.Symbol.ToString();
-            computerButton.Enabled = false;
-            ActiveControl = null;
-
-            if (m_GameManager.IsRoundOver())
-            {
-                handleRoundOver();
-            }
-            else
-            {
-                m_GameManager.SwitchTurn();
-                updateScoreLabel();
+                if (m_GameManager.IsRoundOver())
+                {
+                    handleRoundOver();
+                }
+                else
+                {
+                    m_GameManager.SwitchTurn();
+                    updateScoreLabel();
+                }
             }
         }
 
@@ -196,6 +194,7 @@ namespace GameUI
         {
             Player winner = m_GameManager.GetRoundWinner();
             string message;
+            string title;
 
             m_GameManager.AddPointToWinner();
             updateScoreLabel();
@@ -203,17 +202,18 @@ namespace GameUI
             if (winner == null)
             {
                 message = "Tie!";
+                title = "A Tie!";
             }
             else
             {
                 message = string.Format("The winner is {0}!", winner.Name);
+                title = "A Win!";
             }
 
             DialogResult result = MessageBox.Show(
                 message + Environment.NewLine + "Would you like to play another round?",
-                "A Round Ended",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Question);
+                title,
+                MessageBoxButtons.YesNo);
 
             if (result == DialogResult.Yes)
             {
@@ -262,6 +262,5 @@ namespace GameUI
                 }
             }
         }
-    }
-    
+    } 
 }
